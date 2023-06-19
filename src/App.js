@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
 
+const fruitBasket = [
+	{ id: 155, name: "mango", quantity: 5 },
+  { id: 256, name: "apple", quantity: 4 },
+  { id: 354, name: "banana", quantity: 12 },
+	{ id: 448, name: "strawberry", quantity: 4 },
+]
+
 function App() {
-  return (
+  const [fruits,setfruits]=useState(fruitBasket);
+
+  const updateQuantity =(id,increaseOrDecrease)=>{
+    setfruits(previousfruits=>previousfruits.map(fruit=>{
+      if(fruit.id===id)
+      if (increaseOrDecrease){
+        fruit.quantity +=1;
+      }else{
+        fruit.quantity -=1;
+      }
+      return fruit;
+    }))
+  };
+
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      {fruits.map((fruit)=>{
+        return (
+          <div key={fruit.id}>
+            <p>
+              {fruit.name}:{fruit.quantity}
+            </p>
+            <button onClick={()=>updateQuantity(fruit.id,true)}>+</button>
+            <button onClick={()=>updateQuantity(fruit.id,false)}>-~</button>
+            </div>
+        );
+      })};
+      </div>
   );
 }
+
 
 export default App;
