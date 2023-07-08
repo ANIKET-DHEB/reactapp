@@ -1,44 +1,20 @@
-import {useState} from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+// import AgeChecker from "./components/Agechecker";
+import TodoApp from "./components/Todoapp";
+// import FruitBasket from "./components/Fruitbasket";
+// import Timer from "./components/Timer"
+// import Switchtabs from "./components/Switchtabs";
+// import ConfirmPassword from "./components/Confirmpassword";
+// import Agechecker from "./components/Agechecker";
+// import CharacterCounter from "./components/Charactercounter";
 
-const fruitBasket = [
-	{ id: 155, name: "mango", quantity: 5 },
-  { id: 256, name: "apple", quantity: 4 },
-  { id: 354, name: "banana", quantity: 12 },
-	{ id: 448, name: "strawberry", quantity: 4 },
-]
+
 
 function App() {
-  const [fruits,setfruits]=useState(fruitBasket);
-
-  const updateQuantity =(id,increaseOrDecrease)=>{
-    setfruits(previousfruits=>previousfruits.map(fruit=>{
-      if(fruit.id===id)
-      if (increaseOrDecrease){
-        fruit.quantity +=1;
-      }else{
-        fruit.quantity -=1;
-      }
-      return fruit;
-    }))
-  };
-
   return(
-    <div className="App">
-      {fruits.map((fruit)=>{
-        return (
-          <div key={fruit.id}>
-            <p>
-              {fruit.name}:{fruit.quantity}
-            </p>
-            <button onClick={()=>updateQuantity(fruit.id,true)}>+</button>
-            <button onClick={()=>updateQuantity(fruit.id,false)}>-~</button>
-            </div>
-        );
-      })};
-      </div>
-  );
+   <TodoApp/>
+)
 }
-
-
-export default App;
+  
+  export default App;
